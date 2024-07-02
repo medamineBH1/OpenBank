@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "2ABjwGfQ4ufQD8linoWeiwAuIk70Ex8UoRDcGAcrwxY=",
+  "Source": "OpenBanking",
+  "BasePath": "_content/OpenBanking",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

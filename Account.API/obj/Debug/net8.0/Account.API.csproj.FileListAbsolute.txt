@@ -1,0 +1,7 @@
+C:\Users\damin\source\repos\OpenBanking\Account.API\obj\Debug\net8.0\Account.API.csproj.AssemblyReference.cache
+C:\Users\damin\source\repos\OpenBanking\Account.API\obj\Debug\net8.0\Account.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\damin\source\repos\OpenBanking\Account.API\obj\Debug\net8.0\Account.API.AssemblyInfoInputs.cache
+C:\Users\damin\source\repos\OpenBanking\Account.API\obj\Debug\net8.0\Account.API.AssemblyInfo.cs
+C:\Users\damin\source\repos\OpenBanking\Account.API\obj\Debug\net8.0\Account.API.csproj.CoreCompileInputs.cache
+C:\Users\damin\source\repos\OpenBanking\Account.API\obj\Debug\net8.0\Account.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\damin\source\repos\OpenBanking\Account.API\obj\Debug\net8.0\Account.API.MvcApplicationPartsAssemblyInfo.cache
