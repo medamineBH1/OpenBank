@@ -30,3 +30,6 @@ C:\Users\damin\source\repos\OpenBanking\OpenBanking\obj\Debug\net8.0\refint\Open
 C:\Users\damin\source\repos\OpenBanking\OpenBanking\obj\Debug\net8.0\OpenBanking.pdb
 C:\Users\damin\source\repos\OpenBanking\OpenBanking\obj\Debug\net8.0\OpenBanking.genruntimeconfig.cache
 C:\Users\damin\source\repos\OpenBanking\OpenBanking\obj\Debug\net8.0\ref\OpenBanking.dll
+C:\Users\damin\source\repos\OpenBanking\OpenBanking\bin\Debug\net8.0\MediatR.dll
+C:\Users\damin\source\repos\OpenBanking\OpenBanking\bin\Debug\net8.0\MediatR.Contracts.dll
+C:\Users\damin\source\repos\OpenBanking\OpenBanking\obj\Debug\net8.0\OpenBanking.sourcelink.json

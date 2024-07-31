@@ -1,4 +1,4 @@
-﻿namespace Branch.API.DeleteBranch
+﻿namespace Branch.API
 {
     public class DeleteBranchResponse
     {

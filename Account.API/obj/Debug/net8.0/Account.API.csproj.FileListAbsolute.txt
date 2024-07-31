@@ -5,3 +5,4 @@ C:\Users\damin\source\repos\OpenBanking\Account.API\obj\Debug\net8.0\Account.API
 C:\Users\damin\source\repos\OpenBanking\Account.API\obj\Debug\net8.0\Account.API.csproj.CoreCompileInputs.cache
 C:\Users\damin\source\repos\OpenBanking\Account.API\obj\Debug\net8.0\Account.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\damin\source\repos\OpenBanking\Account.API\obj\Debug\net8.0\Account.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\damin\source\repos\OpenBanking\Account.API\obj\Debug\net8.0\Account.API.sourcelink.json

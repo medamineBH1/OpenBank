@@ -5,3 +5,4 @@ C:\Users\damin\source\repos\OpenBanking\Branch.API\obj\Debug\net8.0\Branch.API.A
 C:\Users\damin\source\repos\OpenBanking\Branch.API\obj\Debug\net8.0\Branch.API.csproj.CoreCompileInputs.cache
 C:\Users\damin\source\repos\OpenBanking\Branch.API\obj\Debug\net8.0\Branch.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\damin\source\repos\OpenBanking\Branch.API\obj\Debug\net8.0\Branch.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\damin\source\repos\OpenBanking\Branch.API\obj\Debug\net8.0\Branch.API.sourcelink.json

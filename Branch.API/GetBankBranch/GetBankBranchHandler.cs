@@ -2,7 +2,8 @@
 
 namespace OpenBank.Services.Branch.GetBankBranches
 {
-    public record GetBankBranchesRequest(string BankId, int Limit = 500, int Offset = 0, string SortDirection = "DESC") : IRequest<GetBankBranchesResponse>;
+    // Query
+    public record GetBankBranchesQuery(string BankId, int Limit = 500, int Offset = 0, string SortDirection = "DESC") : IRequest<GetBankBranchesResponse>;
 
     public record GetBankBranchesResponse
     {
@@ -25,11 +26,12 @@ namespace OpenBank.Services.Branch.GetBankBranches
         public double Longitude { get; init; }
     }
 
-    public class GetBankBranchesHandler : IRequestHandler<GetBankBranchesRequest, GetBankBranchesResponse>
+    // Query Handler
+    public class GetBankBranchesHandler : IRequestHandler<GetBankBranchesQuery, GetBankBranchesResponse>
     {
-        public async Task<GetBankBranchesResponse> Handle(GetBankBranchesRequest request, CancellationToken cancellationToken)
+        public async Task<GetBankBranchesResponse> Handle(GetBankBranchesQuery request, CancellationToken cancellationToken)
         {
-            // Simulate fetching branch data from a data source or external service
+            // Fetch branch data (you can add any data source like database, external service, etc.)
             var branches = await FetchBranchesFromDataSource(request.BankId, request.Limit, request.Offset, request.SortDirection);
 
             return new GetBankBranchesResponse
@@ -40,8 +42,7 @@ namespace OpenBank.Services.Branch.GetBankBranches
 
         private Task<List<Branch>> FetchBranchesFromDataSource(string bankId, int limit, int offset, string sortDirection)
         {
-            // Simulate fetching branch data based on bankId, limit, offset, and sort direction
-            // Replace with actual logic to fetch data from a data source or service
+            // Simulate fetching branch data
             var branches = new List<Branch>
             {
                 new Branch
@@ -59,7 +60,29 @@ namespace OpenBank.Services.Branch.GetBankBranches
             return Task.FromResult(branches);
         }
     }
-    public interface IRequestHandler<T1, T2>
+
+    // Command
+    public record CreateBranchCommand(string BankId, string Name, string Address, GeoLocation Location, string License, string Scheme) : IRequest<CreateBranchResponse>;
+
+    public record CreateBranchResponse
     {
+        public string Id { get; init; }
+        public string Message { get; init; }
+    }
+
+    // Command Handler
+    public class CreateBranchHandler : IRequestHandler<CreateBranchCommand, CreateBranchResponse>
+    {
+        public async Task<CreateBranchResponse> Handle(CreateBranchCommand request, CancellationToken cancellationToken)
+        {
+            // Simulate the creation of a new branch and returning the new branch ID.
+            var newBranchId = Guid.NewGuid().ToString();
+
+            return new CreateBranchResponse
+            {
+                Id = newBranchId,
+                Message = "Branch created successfully"
+            };
+        }
     }
 }

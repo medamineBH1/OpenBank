@@ -1,13 +1,12 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-#Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
-#For more information, please see https://aka.ms/containercompat
-
+# Use the official ASP.NET Core runtime as a parent image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-nanoserver-1809 AS base
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
+# Use the SDK image for building the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0-nanoserver-1809 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
@@ -15,12 +14,13 @@ COPY ["OpenBanking/OpenBanking.csproj", "OpenBanking/"]
 RUN dotnet restore "./OpenBanking/OpenBanking.csproj"
 COPY . .
 WORKDIR "/src/OpenBanking"
-RUN dotnet build "./OpenBanking.csproj" -c %BUILD_CONFIGURATION% -o /app/build
+RUN dotnet build "./OpenBanking.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
+# Publish the application
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./OpenBanking.csproj" -c %BUILD_CONFIGURATION% -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./OpenBanking.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
+# Final stage - runtime image
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .

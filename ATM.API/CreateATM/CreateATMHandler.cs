@@ -1,18 +1,21 @@
 ﻿using MediatR;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OpenBank.Services.Atm.CreateAtm
 {
-    public class CreateATMHandler : IRequestHandler<CreateAtmRequest, CreateAtmResponse>
+    public class CreateATMHandler : IRequestHandler<CreateAtmCommand, CreateAtmResponse>
     {
-        public async Task<CreateAtmResponse> Handle(CreateAtmRequest request, CancellationToken cancellationToken)
+        public async Task<CreateAtmResponse> Handle(CreateAtmCommand request, CancellationToken cancellationToken)
         {
             // Simulate ATM creation logic
             var createdAtm = new CreateAtmResponse
             {
                 AccessibilityFeatures = request.AccessibilityFeatures,
                 Address = request.Address,
-                AtmAttributeId = "xxaf2a-9a0f-4bfa-b30b-9003aa467f51",
-                AtmId = "atme-9a0f-4bfa-b30b-9003aa467f51",
+                AtmAttributeId = Guid.NewGuid().ToString(),
+                AtmId = Guid.NewGuid().ToString(),
                 AtmType = request.AtmType,
                 BalanceInquiryFee = request.BalanceInquiryFee,
                 BankId = request.BankId,
@@ -61,6 +64,5 @@ namespace OpenBank.Services.Atm.CreateAtm
             return await Task.FromResult(createdAtm);
         }
     }
-
-   
 }
+

@@ -1,92 +1,83 @@
-﻿namespace Branch.API.CreateBranch
+﻿using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
+
+namespace Branch.API.CreateBranch
 {
-    public class CreateBranchRequest
+    // Command
+    public record CreateBranchCommand(
+        string BankId, string[] AccessibleFeatures, string Address, string BranchRouting, string BranchType,
+        string City, string ClosingTime, string CountryCode, string County, string DriveUp, string Friday,
+        string Id, bool IsAccessible, string Latitude, string License, string Line1, string Line2,
+        string Line3, string Lobby, string Location, string Longitude, string Meta, string Monday,
+        string MoreInfo, string Name, string OpeningTime, string PhoneNumber, string Postcode,
+        string Saturday, string Scheme, string State, string Sunday, string Thursday, string Tuesday,
+        string Wednesday) : IRequest<CreateBranchResponse>;
+
+    public record CreateBranchResponse
     {
-        public string BankId { get; set; }
-        public string[] AccessibleFeatures { get; set; }
-        public string Address { get; set; }
-        public string BranchRouting { get; set; }
-        public string BranchType { get; set; }
-        public string City { get; set; }
-        public string ClosingTime { get; set; }
-        public string CountryCode { get; set; }
-        public string County { get; set; }
-        public string DriveUp { get; set; }
-        public string Friday { get; set; }
-        public string Id { get; set; }
-        public bool IsAccessible { get; set; }
-        public string Latitude { get; set; }
-        public string License { get; set; }
-        public string Line1 { get; set; }
-        public string Line2 { get; set; }
-        public string Line3 { get; set; }
-        public string Lobby { get; set; }
-        public string Location { get; set; }
-        public string Longitude { get; set; }
-        public string Meta { get; set; }
-        public string Monday { get; set; }
-        public string MoreInfo { get; set; }
-        public string Name { get; set; }
-        public string OpeningTime { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Postcode { get; set; }
-        public string Saturday { get; set; }
-        public string Scheme { get; set; }
-        public string State { get; set; }
-        public string Sunday { get; set; }
-        public string Thursday { get; set; }
-        public string Tuesday { get; set; }
-        public string Wednesday { get; set; }
+        public string[] AccessibleFeatures { get; init; }
+        public string Address { get; init; }
+        public string BankId { get; init; }
+        public string BranchRouting { get; init; }
+        public string BranchType { get; init; }
+        public string City { get; init; }
+        public string ClosingTime { get; init; }
+        public string CountryCode { get; init; }
+        public string County { get; init; }
+        public string DriveUp { get; init; }
+        public string Friday { get; init; }
+        public string Id { get; init; }
+        public bool IsAccessible { get; init; }
+        public string Latitude { get; init; }
+        public string License { get; init; }
+        public string Line1 { get; init; }
+        public string Line2 { get; init; }
+        public string Line3 { get; init; }
+        public string Lobby { get; init; }
+        public string Location { get; init; }
+        public string Longitude { get; init; }
+        public string Meta { get; init; }
+        public string Monday { get; init; }
+        public string MoreInfo { get; init; }
+        public string Name { get; init; }
+        public string OpeningTime { get; init; }
+        public string PhoneNumber { get; init; }
+        public string Postcode { get; init; }
+        public string Saturday { get; init; }
+        public string Scheme { get; init; }
+        public string State { get; init; }
+        public string Sunday { get; init; }
+        public string Thursday { get; init; }
+        public string Tuesday { get; init; }
+        public string Wednesday { get; init; }
     }
 
-    public class CreateBranchResponse
+    // Handler
+    public class CreateBranchHandler : IRequestHandler<CreateBranchCommand, CreateBranchResponse>
     {
-        public string[] AccessibleFeatures { get; set; }
-        public string Address { get; set; }
-        public string BankId { get; set; }
-        public string BranchRouting { get; set; }
-        public string BranchType { get; set; }
-        public string City { get; set; }
-        public string ClosingTime { get; set; }
-        public string CountryCode { get; set; }
-        public string County { get; set; }
-        public string DriveUp { get; set; }
-        public string Friday { get; set; }
-        public string Id { get; set; }
-        public bool IsAccessible { get; set; }
-        public string Latitude { get; set; }
-        public string License { get; set; }
-        public string Line1 { get; set; }
-        public string Line2 { get; set; }
-        public string Line3 { get; set; }
-        public string Lobby { get; set; }
-        public string Location { get; set; }
-        public string Longitude { get; set; }
-        public string Meta { get; set; }
-        public string Monday { get; set; }
-        public string MoreInfo { get; set; }
-        public string Name { get; set; }
-        public string OpeningTime { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Postcode { get; set; }
-        public string Saturday { get; set; }
-        public string Scheme { get; set; }
-        public string State { get; set; }
-        public string Sunday { get; set; }
-        public string Thursday { get; set; }
-        public string Tuesday { get; set; }
-        public string Wednesday { get; set; }
+        private readonly IBranchRepository _branchRepository;
+
+        public CreateBranchHandler(IBranchRepository branchRepository)
+        {
+            _branchRepository = branchRepository;
+        }
+
+        public async Task<CreateBranchResponse> Handle(CreateBranchCommand request, CancellationToken cancellationToken)
+        {
+            var response = await _branchRepository.CreateBranchAsync(request);
+            return response;
+        }
     }
 
     public interface IBranchRepository
     {
-        Task<CreateBranchResponse> CreateBranchAsync(CreateBranchRequest request);
-        Task DeleteBranchAsync(string bankId, string branchId);
+        Task<CreateBranchResponse> CreateBranchAsync(CreateBranchCommand request);
     }
 
     public class BranchRepository : IBranchRepository
     {
-        public Task<CreateBranchResponse> CreateBranchAsync(CreateBranchRequest request)
+        public Task<CreateBranchResponse> CreateBranchAsync(CreateBranchCommand request)
         {
             // Simulate a branch creation operation
             var response = new CreateBranchResponse

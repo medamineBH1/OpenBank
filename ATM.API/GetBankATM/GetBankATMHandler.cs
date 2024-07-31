@@ -1,10 +1,71 @@
-﻿using MediatR;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 
 namespace ATM.API.GetBankATM
 {
-    public class GetBankATMHandler : IRequestHandler<GetBankATMRequest, GetBankATMResponse>
+    // Query
+    public record GetBankATMQuery(string AtmId) : IRequest<GetBankATMResponse>;
+
+    public record GetBankATMResponse
     {
-        public async Task<GetBankATMResponse> Handle(GetBankATMRequest request, CancellationToken cancellationToken)
+        public string[] AccessibilityFeatures { get; init; }
+        public string Address { get; init; }
+        public string AtmAttributeId { get; init; }
+        public string AtmId { get; init; }
+        public string AtmType { get; init; }
+        public string BalanceInquiryFee { get; init; }
+        public string BankId { get; init; }
+        public string BranchIdentification { get; init; }
+        public string CashWithdrawalInternationalFee { get; init; }
+        public string CashWithdrawalNationalFee { get; init; }
+        public string City { get; init; }
+        public string ClosingTime { get; init; }
+        public string CountryCode { get; init; }
+        public string County { get; init; }
+        public string Friday { get; init; }
+        public bool HasDepositCapability { get; init; }
+        public string Id { get; init; }
+        public bool IsAccessible { get; init; }
+        public double Latitude { get; init; }
+        public string License { get; init; }
+        public string Line1 { get; init; }
+        public string Line2 { get; init; }
+        public string Line3 { get; init; }
+        public string LocatedAt { get; init; }
+        public string Location { get; init; }
+        public string[] LocationCategories { get; init; }
+        public double Longitude { get; init; }
+        public string Meta { get; init; }
+        public string MinimumWithdrawal { get; init; }
+        public string Monday { get; init; }
+        public string MoreInfo { get; init; }
+        public string Name { get; init; }
+        public string Notes { get; init; }
+        public string OpeningTime { get; init; }
+        public string Phone { get; init; }
+        public string Postcode { get; init; }
+        public string Saturday { get; init; }
+        public string Services { get; init; }
+        public string SiteIdentification { get; init; }
+        public string SiteName { get; init; }
+        public string State { get; init; }
+        public string Sunday { get; init; }
+        public string[] SupportedCurrencies { get; init; }
+        public string[] SupportedLanguages { get; init; }
+        public string Thursday { get; init; }
+        public string Tuesday { get; init; }
+        public string Type { get; init; }
+        public int Value { get; init; }
+        public string Wednesday { get; init; }
+        public string[] Attributes { get; init; }
+        public bool IsActive { get; init; }
+    }
+
+    // Handler
+    public class GetBankATMHandler : IRequestHandler<GetBankATMQuery, GetBankATMResponse>
+    {
+        public async Task<GetBankATMResponse> Handle(GetBankATMQuery request, CancellationToken cancellationToken)
         {
             // Simulate fetching ATM details from a data source
             var response = new GetBankATMResponse
@@ -12,7 +73,7 @@ namespace ATM.API.GetBankATM
                 AccessibilityFeatures = new[] { "ATAC", "ATAD" },
                 Address = "Sample Address",
                 AtmAttributeId = "xxaf2a-9a0f-4bfa-b30b-9003aa467f51",
-                AtmId = "atme-9a0f-4bfa-b30b-9003aa467f51",
+                AtmId = request.AtmId,
                 AtmType = "Sample Type",
                 BalanceInquiryFee = "1.00",
                 BankId = "gh.29.uk",
