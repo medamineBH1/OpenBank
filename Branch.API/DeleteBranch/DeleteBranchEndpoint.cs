@@ -1,6 +1,5 @@
 ﻿using Branch.API.CreateBranch;
 
-
 namespace Branch.API.DeleteBranch
 {
     public class DeleteBranchEndpoint
@@ -9,7 +8,7 @@ namespace Branch.API.DeleteBranch
 
         public DeleteBranchEndpoint(IBranchRepository branchRepository)
         {
-            _branchRepository = branchRepository;
+            _branchRepository = branchRepository ?? throw new ArgumentNullException(nameof(branchRepository));
         }
 
         public void AddRoutes(IEndpointRouteBuilder app)
@@ -19,37 +18,19 @@ namespace Branch.API.DeleteBranch
                 try
                 {
                     // Perform the delete operation
-                    var deletedBranch = await _branchRepository.deleteBranch(BankId, BranchId);
+                    var deletedBranch = await _branchRepository.DeleteBranch(BankId, BranchId);
 
                     if (deletedBranch == null)
                     {
                         return Results.NotFound();
                     }
 
-                    // Create the response
-                    var response = new DeleteBranchResponse
-                    {
-                        Id = deletedBranch.Id,
-                        BankId = deletedBranch.BankId,
-                        Name = deletedBranch.Name,
-                        Address = deletedBranch.Address,
-                        Location = deletedBranch.Location,
-                        Meta = deletedBranch.Meta,
-                        Lobby = deletedBranch.Lobby,
-                        DriveUp = deletedBranch.DriveUp,
-                        BranchRouting = deletedBranch.BranchRouting,
-                        IsAccessible = deletedBranch.IsAccessible,
-                        AccessibleFeatures = deletedBranch.AccessibleFeatures,
-                        BranchType = deletedBranch.BranchType,
-                        MoreInfo = deletedBranch.MoreInfo,
-                        PhoneNumber = deletedBranch.PhoneNumber
-                    };
-
-                    return Results.Ok(response);
+                    return Results.Ok(deletedBranch);
                 }
                 catch (Exception ex)
                 {
-                    return Results.Problem(detail: $"Internal server error: {ex.Message}", statusCode: StatusCodes.Status500InternalServerError);
+                    // Handle the exception (you can log it or return a specific error result)
+                    return Results.Problem("An error occurred while deleting the branch: " + ex.Message);
                 }
             })
             .WithName("DeleteBranch")
