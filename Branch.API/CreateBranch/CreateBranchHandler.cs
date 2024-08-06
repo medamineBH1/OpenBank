@@ -73,6 +73,7 @@ namespace Branch.API.CreateBranch
     public interface IBranchRepository
     {
         Task<CreateBranchResponse> CreateBranchAsync(CreateBranchCommand request);
+        Task deleteBranch(string bankId, string branchId);
     }
 
     public class BranchRepository : IBranchRepository
